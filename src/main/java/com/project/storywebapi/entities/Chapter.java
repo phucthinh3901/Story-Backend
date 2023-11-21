@@ -54,6 +54,12 @@ public class Chapter {
 	@Column(name = "viewCount")
 	private Integer viewCount;
 	
+	@Column(name = "currency")
+	private String currency;
+	
+	@Column(name = "price")
+	private Integer price;
+	
 	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "storyId")

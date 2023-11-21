@@ -49,7 +49,7 @@ public class User {
 	private String avatar;
 	
 	@Column(name = "amount")
-	private String amount;
+	private Double amount;
 	
 	@Column(name = "verified", columnDefinition = "BOOLEAN")
 	private Boolean verified;
