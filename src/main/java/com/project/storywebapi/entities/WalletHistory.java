@@ -41,10 +41,13 @@ public class WalletHistory {
 	private String content;
 	
 	@Column(name = "amount")
-	private String amount;
+	private Double amount;
 	
 	@Column(name = "currency")
 	private String currency;
+	
+	@Column(name = "type")
+	private String type;
 	
 	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)

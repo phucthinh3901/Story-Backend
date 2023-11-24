@@ -20,8 +20,9 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.project.storywebapi.controller.PaginationUserDto;
+
 import com.project.storywebapi.dto.PaginationDto;
+import com.project.storywebapi.dto.PaginationUserDto;
 import com.project.storywebapi.dto.RoleUserDto;
 import com.project.storywebapi.dto.UserDto;
 import com.project.storywebapi.entities.RefreshToken;
@@ -180,11 +181,11 @@ public class UserServiceImpl implements UserServices{
 		Pageable pageable = PageRequest.of(0, 10, Sort.by("createdAt"));
 		Page<User> result = usersRepository.findAll(specification, pageable);
 		RoleUserDto roleUserDto = null;
-		PaginationUserDto dto = null;
-		List<PaginationUserDto> paginationUserDtos = new ArrayList<PaginationUserDto>();
+		com.project.storywebapi.dto.PaginationUserDto dto = null;
+		List<com.project.storywebapi.dto.PaginationUserDto> paginationUserDtos = new ArrayList<com.project.storywebapi.dto.PaginationUserDto>();
 	
 		for(User user : result.getContent()) {
-			dto = new PaginationUserDto();
+			dto = new com.project.storywebapi.dto.PaginationUserDto();
 			dto.setId(user.getId());
 			dto.setCreateAt(user.getCreatedAt());
 			dto.setCreateBy(user.getCreatedBy());

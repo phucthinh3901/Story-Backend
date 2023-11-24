@@ -58,7 +58,7 @@ public class Chapter {
 	private String currency;
 	
 	@Column(name = "price")
-	private Integer price;
+	private Double price;
 	
 	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)

@@ -2,8 +2,9 @@ package com.project.storywebapi.service;
 
 import org.springframework.data.domain.Page;
 
-import com.project.storywebapi.controller.PaginationUserDto;
+
 import com.project.storywebapi.dto.PaginationDto;
+import com.project.storywebapi.dto.PaginationUserDto;
 import com.project.storywebapi.dto.UserDto;
 import com.project.storywebapi.entities.User;
 import com.project.storywebapi.payload.request.ChangePasswordRequest;

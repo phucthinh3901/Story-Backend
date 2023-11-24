@@ -5,6 +5,7 @@ import java.util.Arrays;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
@@ -28,7 +29,7 @@ import com.project.storywebapi.security.service.UserDetailsServiceImpl;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
-	
+
 	@Autowired
 	UserDetailsServiceImpl userDetailsService;
 
@@ -39,17 +40,18 @@ public class SecurityConfig {
 	AuthTokenFilter authenticationJwtTokenFilter() {
 		return new AuthTokenFilter();
 	}
-	
+
 	@Bean
 	PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
-	
+
 	@Bean
 	AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration)
 			throws Exception {
 		return authenticationConfiguration.getAuthenticationManager();
 	}
+
 	@Bean
 	DaoAuthenticationProvider authenticationProvider() {
 		DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
@@ -59,6 +61,7 @@ public class SecurityConfig {
 
 		return authProvider;
 	}
+
 	@Bean
 	WebMvcConfigurer corsConfigurer() {
 		return new WebMvcConfigurer() {
@@ -68,6 +71,7 @@ public class SecurityConfig {
 			}
 		};
 	}
+
 	@Bean
 	CorsConfigurationSource corsConfigurationSource() {
 		CorsConfiguration configuration = new CorsConfiguration();
@@ -79,13 +83,14 @@ public class SecurityConfig {
 		source.registerCorsConfiguration("/**", configuration);
 		return source;
 	}
-	
+
 	@Bean
 	SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 		http.cors(cors -> cors.configurationSource(corsConfigurationSource())).csrf(csrf -> csrf.disable())
 				.exceptionHandling(exception -> exception.authenticationEntryPoint(unauthorizedHandler))
 				.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-				.authorizeHttpRequests(auth -> auth.requestMatchers("/api/signin", "/api/sigup").permitAll().anyRequest().permitAll());
+				.authorizeHttpRequests(
+						auth -> auth.requestMatchers("/api/signin", "/api/sigup").permitAll().anyRequest().permitAll());
 
 		http.authenticationProvider(authenticationProvider());
 
@@ -93,6 +98,6 @@ public class SecurityConfig {
 
 		return http.build();
 	}
-	
+
 //	
 }

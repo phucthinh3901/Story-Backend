@@ -3,7 +3,7 @@ package com.project.storywebapi.entities;
 public enum WalletHistoryType {
 	
 	Withdraw("Rút tiền"),
-	Deposit("Nạp tiền");
+	Deposit( "Nạp tiền");
 	
 	public final String label;
 

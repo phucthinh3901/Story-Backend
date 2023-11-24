@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.project.storywebapi.dto.PaginationDto;
+import com.project.storywebapi.dto.PaginationUserDto;
 import com.project.storywebapi.payload.request.ChangePasswordRequest;
 import com.project.storywebapi.payload.request.LoginRequest;
 import com.project.storywebapi.payload.request.SignupRequest;

@@ -17,4 +17,7 @@ public interface UserRepository extends JpaRepository<User, Integer>,JpaSpecific
 	
 	@Query("From User u where u.id = :userId and u.isDeleted = false")
 	User findByUserIdAndIsDeleteFalse(@Param("userId") Integer userId);
+	
+	@Query("From User u where u.id = :userId and u.isDeleted = false and u.verified = true")
+	User findByIdAndIsDeletedAndVerified(@Param("userId") Integer userId);
 }
